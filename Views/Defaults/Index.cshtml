@@ -1,0 +1,43 @@
+﻿@model IEnumerable<CPMS.Models.Defaults>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EnabledReviewers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnabledAuthors)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnabledReviewers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnabledAuthors)
+            </td>
+            <td>
+                @{
+                    /* the only allowed action will be to edit the current "defaults" since this is global and we never
+                    want to create or delete any new ones */
+                }
+                <a asp-action="Edit" asp-route-id="@item.DefaultsID">Edit</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPMS", "CPMS.csproj", "{4FD7C0B4-2F4D-40A7-87AA-70FC119B1019}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4FD7C0B4-2F4D-40A7-87AA-70FC119B1019}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FD7C0B4-2F4D-40A7-87AA-70FC119B1019}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FD7C0B4-2F4D-40A7-87AA-70FC119B1019}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FD7C0B4-2F4D-40A7-87AA-70FC119B1019}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BDA01F1B-87CC-438B-A403-41FFB2C1D3AC}
+	EndGlobalSection
+EndGlobal

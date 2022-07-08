@@ -1,0 +1,45 @@
+﻿@model CPMS.Models.Defaults
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Defaults</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="DefaultsID" />
+            <div class="form-group">
+                <label asp-for="EnabledReviewers" class="control-label"></label>
+                <select asp-for="EnabledReviewers" class="form-control">
+                    <option selected id="True">True</option>
+                    <option id="False">False</option>
+                </select>
+                <span asp-validation-for="EnabledReviewers" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnabledAuthors" class="control-label"></label>
+                <select asp-for="EnabledAuthors" class="form-control">
+                    <option selected id="True">True</option>
+                    <option id="False">False</option>
+                </select>>
+                <span asp-validation-for="EnabledAuthors" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

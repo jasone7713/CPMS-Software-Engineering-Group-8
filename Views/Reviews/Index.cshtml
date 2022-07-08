@@ -1,0 +1,49 @@
+﻿@model IEnumerable<CPMS.Models.Review>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Reviews</h1>
+
+<h4>This is a test message!</h4>
+
+<p>
+    <a asp-action="Create">Create New Review</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PaperID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReviewerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Complete)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaperID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReviewerID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Complete)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ReviewID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ReviewID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ReviewID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

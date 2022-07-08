@@ -1,0 +1,125 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #6a9195;
+    background-image: url(https://static-cse.canva.com/_next/static/assets/wave.2881x801.daced2bcfef186479fdaccb1f60c48cd.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+.nav-item::marker {
+    visibility: hidden !important;
+}
+
+.title-header{
+    text-align: center !important;
+    font-size: 30px !important;
+    color: blue;
+}
+
+nav-color {
+    background-color: #58787c;
+}
+
+.column {
+    float: left;
+    width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.row-new{
+    flex-shrink: 3 !important;
+    flex-wrap: nowrap;
+    overflow: auto;
+}
+
+.main-button {
+    background-color: transparent;
+    color: black;
+    border: 2px solid #555555;
+}
+
+.main-button:hover {
+    background-color: #555555;
+    color: white;
+}
+
+table, th, td {
+    border: 1px solid;
+}
+
+table {
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link a:visited {
+    color: #000;
+}
+
+.Books {
+    position: absolute;
+    right: 10px;
+    bottom: 70px;
+}
+
+.Office {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -260px;
+    margin-left: -290px;
+}
+
+.Room {
+    position: absolute;
+    top: 56px;
+    left: -40px;
+    width: 1960px;
+    height: 812px;
+}
+
+.fontA {
+    position: relative;
+    color: #FFF;
+    animation: .75s .3s animation-slider-title ease-in-out forwards;
+    font-family: Oswald;
+    font-weight: 700;
+    font-size: 6.3em;
+    text-transform: uppercase;
+}
+
+.fontB {
+    font-style: italic;
+    font-size: 2em;
+    position: relative;
+    color: #FFF;
+    text-align: center;
+}
+
+.fontC {
+    font-family: "Lucida Handwriting", Times, serif;
+}

@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+@{
+    //check if the user is permitted to log in and then plan accordingly
+    if (LoginManager.CanLogIn())
+    {
+        @ViewBag.LoginMessages
+          <div class="wrapper">
+            <form class="form-signin" asp-controller="Home" method="post" asp-action="ManageLogin">       
+              <h2 class="form-signin-heading">Login</h2>
+
+              <input type="text" class="form-control" name="username" placeholder="Email" required="" />
+              <input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
+            </form>
+        </div>
+    }
+    //if the user is already logged in
+    else if (LoginManager.IsLoggedIn == true)
+    {
+        <h3>You are already logged in at this time</h3>
+        <a href="/Home/Index">Return</a>
+    } 
+    //if the user has had too many illegal login attempts
+    else
+    {
+        <h3>You have had @LoginManager.LoginAttempts failed login attempts using illegal characters</h3>
+        <p>You may no longer log in at this time</p>
+        <a href="/Home/Index">Return</a>
+    }
+}

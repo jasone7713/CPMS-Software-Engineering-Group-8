@@ -1,0 +1,61 @@
+﻿@using Microsoft.Data.SqlClient
+@model IEnumerable<CPMS.Models.Paper>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Papers</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AuthorID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Filename)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            //logic to display only records marked as active
+            if (item.Active == true)
+            {
+            <tr>
+            <td>
+
+                @{  /*
+                    string sql = "SELECT FirstName FROM Author WHERE AuthorID = '" + item.AuthorID + "';";  
+                    SqlCommand cmd = new SqlCommand(sql, conn);  
+                    SqlDataReader reader = cmd.ExecuteReader(); */
+                }
+
+                @Html.DisplayFor(modelItem => item.AuthorID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Filename)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.PaperID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.PaperID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.PaperID">Delete</a>
+            </td>
+            </tr>
+            }
+}
+    </tbody>
+</table>

@@ -1,0 +1,27 @@
+﻿@model CPMS.Models.Author
+@using System.Security.Claims 
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+@{
+    string user = "";
+    string pass = "";
+
+    @using (Html.BeginForm("CheckLogin","Index", FormMethod.Post))
+    {
+        <div>
+            <input placeholder="Username" type="text" name="Username" id="user" value="@user"/>
+            <input placeholder="Password" type="password" name="Password" id="pass" value="@pass">
+            <input type="submit" name="Login" value="CheckLogin" class="btn btn-primary" asp-controller="Authors" asp-action="CheckLogin" />
+            @ViewBag.Login = @user;
+            <p>@ViewBag.Login</p>
+        </div>
+    }
+
+
+}
+
+

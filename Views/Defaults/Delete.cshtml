@@ -1,0 +1,32 @@
+﻿@model CPMS.Models.Defaults
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>You are not permitted to Delete this</h3>
+<h5>The system requires that the database has an active record of the default settings</h5>
+<div>
+    <h4>Defaults</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EnabledReviewers)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EnabledReviewers)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EnabledAuthors)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EnabledAuthors)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

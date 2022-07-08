@@ -1,0 +1,11 @@
+You'll need to establish a local database in order to run this code and see the website
+
+To do this:
+-Click tools at the top of the visual studio screen
+-Click NuGet package manager
+-Click Package manager console
+-Now at the bottom of your screen you should see a new console window. Make sure you're on the tab that says "package manager console"
+-In the package manager console, type in add-migration "initialize" (does not need to be initialize, just some name)
+-After that's done type in update-database
+-You should see a bunch of output in the console window
+-After that, you should be able to run the website by clicking the green play icon at the top of the Visual Studio solution
