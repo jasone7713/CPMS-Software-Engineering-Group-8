@@ -86,6 +86,9 @@ namespace CPMS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ReviewID,PaperID,ReviewerID,AppropriatenessOfTopic,TimelinessOfTopic,SupportiveEvidence,TechnicalQuality,ScopeOfCoverage,CitationOfPreviousWork,Originality,ContentComments,OrganizationOfPaper,ClarityOfMainMessage,Mechanics,WrittenDocumentComments,StabilityForPresentation,PotentialInterestInTopic,PotentialForOralPresentationComments,OverallRating,OverallRatingComments,ComfortLevelTopic,ComfortLevelAcceptability,Complete")] Review review)
         {
+            //bind id to the review object we are editing
+            review.ReviewID = id;
+
             if (id != review.ReviewID)
             {
                 return NotFound();
