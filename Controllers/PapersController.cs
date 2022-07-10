@@ -25,7 +25,15 @@ namespace CPMS.Controllers
         // GET: Papers
         public async Task<IActionResult> Index()
         {
-              return _context.Paper != null ? 
+
+            //only allow authors or admin to see papers
+            if ((LoginManager.UserType != "Author") && (LoginManager.IsAdmin() == false))
+            {
+                //redirect user home
+                return RedirectToAction("Index", "Home");
+            }
+
+            return _context.Paper != null ? 
                           View(await _context.Paper.ToListAsync()) :
                           Problem("Entity set 'CPMSContext.Paper'  is null.");
         }
@@ -33,6 +41,14 @@ namespace CPMS.Controllers
         // GET: Papers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+
+            //only allow authors or admin to create a paper
+            if ((LoginManager.UserType != "Author") && (LoginManager.IsAdmin() == false))
+            {
+                //redirect user home
+                return RedirectToAction("Index", "Home");
+            }
+
             if (id == null || _context.Paper == null)
             {
                 return NotFound();
@@ -51,6 +67,14 @@ namespace CPMS.Controllers
         // GET: Papers/Create
         public IActionResult Create()
         {
+
+            //only allow authors or admin to create a paper
+            if((LoginManager.UserType != "Author") && (LoginManager.IsAdmin() == false))
+            {
+                //redirect user home
+                return RedirectToAction("Index", "Home");
+            }
+
             //logic to make sure paper submissions are allowed
 
             //generate SQL connection
@@ -83,6 +107,11 @@ namespace CPMS.Controllers
 
         public async Task<IActionResult> WeightedAverage()
         {
+            //only return report for admin
+            if (!LoginManager.IsAdmin())
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
             return _context.Paper != null ?
                           View(await _context.Paper.ToListAsync()) :
@@ -94,6 +123,12 @@ namespace CPMS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PaperID,AuthorID,Active,FilenameOriginal,Filename,Title,Certification,NotesToReviewers,AnalysisOfAlgorithms,Applications,Architecture,ArtificialIntelligence,ComputerEngineering,Cirriculum,DataStructures,Databases,DistanceLearning,DistributedSystems,EthicalSocietalIssues,FirstYearComputing,GenderIssues,GrantWriting,GraphicsImageProcessing,HumanComputerInteraction,LaboratoryEnvironments,Literacy,MathematicsInComputing,MultiMedia,NetworkingDataCommunications,NonMajorCourses,ObjectOrientedIssues,OperatingSystems,ParallelProgramming,Research,Security,SoftwareEngineering,SystemEngineering,SystemsAnalysisAndDesign,UsingTechnologyInTheClassroom,WebAndInternetProgramming,Other,OtherDescription,formFile")] Paper paper, Paper p)
         {
+            //only allow authors or admin to create a paper
+            if ((LoginManager.UserType != "Author") && (LoginManager.IsAdmin() == false))
+            {
+                //redirect user home
+                return RedirectToAction("Index", "Home");
+            }
 
             if (ModelState.IsValid)
             {
@@ -121,6 +156,12 @@ namespace CPMS.Controllers
                     }
                 }
 
+                //bind the userID of the author with the paper
+                if(LoginManager.UserType == "Author")
+                {
+                    paper.AuthorID = LoginManager.UserId;
+                }
+
                 _context.Add(paper);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -131,6 +172,14 @@ namespace CPMS.Controllers
         // GET: Papers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+
+            //only allow authors or admin to edit a paper
+            if ((LoginManager.UserType != "Author") && (LoginManager.IsAdmin() == false))
+            {
+                //redirect user home
+                return RedirectToAction("Index", "Home");
+            }
+
             if (id == null || _context.Paper == null)
             {
                 return NotFound();
@@ -148,7 +197,15 @@ namespace CPMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("PaperID,AuthorID,Active,FilenameOriginal,Filename,Title,Certification,NotesToReviewers,AnalysisOfAlgorithms,Applications,Architecture,ArtificialIntelligence,ComputerEngineering,Cirriculum,DataStructures,Databases,DistanceLearning,DistributedSystems,EthicalSocietalIssues,FirstYearComputing,GenderIssues,GrantWriting,GraphicsImageProcessing,HumanComputerInteraction,LaboratoryEnvironments,Literacy,MathematicsInComputing,MultiMedia,NetworkingDataCommunications,NonMajorCourses,ObjectOrientedIssues,OperatingSystems,ParallelProgramming,Research,Security,SoftwareEngineering,SystemEngineering,SystemsAnalysisAndDesign,UsingTechnologyInTheClassroom,WebAndInternetProgramming,Other,OtherDescription")] Paper paper)
-        { 
+        {
+
+            //only allow authors or admin to edit a paper
+            if ((LoginManager.UserType != "Author") && (LoginManager.IsAdmin() == false))
+            {
+                //redirect user home
+                return RedirectToAction("Index", "Home");
+            }
+
             //bind the ID of the paper we wish to edit
             paper.PaperID = id;
 
@@ -183,6 +240,14 @@ namespace CPMS.Controllers
         // GET: Papers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+
+            //only allow authors or admin to delete a paper
+            if ((LoginManager.UserType != "Author") && (LoginManager.IsAdmin() == false))
+            {
+                //redirect user home
+                return RedirectToAction("Index", "Home");
+            }
+
             if (id == null || _context.Paper == null)
             {
                 return NotFound();
@@ -204,6 +269,13 @@ namespace CPMS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            //only allow authors or admin to delete a paper
+            if ((LoginManager.UserType != "Author") && (LoginManager.IsAdmin() == false))
+            {
+                //redirect user home
+                return RedirectToAction("Index", "Home");
+            }
+
             if (_context.Paper == null)
             {
                 return Problem("Entity set 'CPMSContext.Paper'  is null.");

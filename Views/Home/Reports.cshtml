@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNetCore.Http;
+
+@{
+    ViewData["Title"] = "Reports";
+}
+
+<h1>View Reports</h1>
+
+@* Display all available reports *@
+
+<div>
+    @* weighted average *@
+    <a asp-controller="Papers" asp-action="WeightedAverage">Click to view Weighted Average Report</a>
+</div>

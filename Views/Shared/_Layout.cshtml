@@ -36,11 +36,21 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Reviewers" asp-action="Index">Reviewers</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Reports">Reports</a>
+                            </li>
                         }
+                        @* Reviewer navigation *@
                         else if(LoginManager.UserType == "Reviewer")
                         {
-
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Reviews" asp-action="Index">My Reviews</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Reviewers" asp-action="Index">My Account</a>
+                            </li>
                         }
+                        @* Author navigation *@
                         else if(LoginManager.UserType == "Author")
                         {
                             <li class="nav-item">
@@ -52,23 +62,21 @@
                         }
                     </ul>
 
-                    @* Display a special message to a logged in user*@
-                    @if (LoginManager.IsLoggedIn == true)
+                    @* Display a special message to a logged in user if it's morning *@
+                    @if (LoginManager.IsLoggedIn == true && DateTime.Now.Hour < 12)
                     {
-                        //decide if it's morning or evening and say hello
-                        if(DateTime.Now.Hour < 12)
-                        {
-                            <li class="nav-item">
-                                <p>Good morning, @LoginManager.Username!</p>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <p>Hello, @LoginManager.Username!</p>
-                            </li>
-                        }
+                        <li class="nav-item">
+                            <p>Good morning, @LoginManager.Username!</p>
+                        </li>
                     }
+                    @* Display message to logged in user if not morning *@
+                    else if(LoginManager.IsLoggedIn == true)
+                    {
+                         <li class="nav-item">
+                            <p>Hello, @LoginManager.Username!</p>
+                         </li> 
+                    }
+                    @* Display login and register options to a non-logged in user *@
                     else
                     {
                         <li class="nav-item">

@@ -27,6 +27,12 @@ namespace CPMS.Controllers
             return View();
         }
 
+        //reports redirect
+        public IActionResult Reports()
+        {
+            return View();
+        }
+
         //register redirect
         public IActionResult Register()
         {

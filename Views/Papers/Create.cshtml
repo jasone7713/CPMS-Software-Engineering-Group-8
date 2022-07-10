@@ -15,18 +15,17 @@
             <div class="row row-new">
                 <div class="column">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="AuthorID" class="control-label"></label>
-                        <input asp-for="AuthorID" class="form-control" />
-                        <span asp-validation-for="AuthorID" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Active" class="control-label"></label>
-                        <select asp-for="Active" class="form-control">
-                            <option>true</option>
-                            <option>false</option>
-                        </select>
-                    </div>
+                    @* Only display author ID selector to admin *@
+                    @if (LoginManager.IsAdmin())
+                    {
+                        <h5>Author</h5>
+                        <div class="form-group">
+                            <label asp-for="AuthorID" class="control-label"></label>
+                            <input asp-for="AuthorID" class="form-control" />
+                            <span asp-validation-for="AuthorID" class="text-danger"></span>
+                        </div>
+                    }
+                    <h5>Upload and Title</h5>
                     <div class="form-group">
                         <label asp-for="Filename" class="control-label"></label>
                         <div class="custom-file">
@@ -49,6 +48,7 @@
                         <input asp-for="NotesToReviewers" class="form-control" />
                         <span asp-validation-for="NotesToReviewers" class="text-danger"></span>
                     </div>
+                    <h5>Paper Topics</h5>
                     <div class="form-group">
                         <label asp-for="AnalysisOfAlgorithms" class="control-label"></label>
                         <select asp-for="AnalysisOfAlgorithms" class="form-control">

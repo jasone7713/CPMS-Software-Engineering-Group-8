@@ -38,7 +38,7 @@
                 @* Ensure that authors only see their work *@
                 @if(LoginManager.UserType == "Author")
                 {
-                    @if(LoginManager.UserId != item.PaperID)
+                    @if(LoginManager.UserId != item.AuthorID)
                     {
                         continue;
                     }
@@ -54,7 +54,7 @@
                     @Html.DisplayFor(modelItem => item.AuthorID)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Filename)
+                    @Html.DisplayFor(modelItem => item.FilenameOriginal)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
@@ -62,8 +62,15 @@
                 <td>
                         <a asp-action="Edit" asp-route-id="@item.PaperID">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.PaperID">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.PaperID">Delete</a>
-                </td>
+                        <a asp-action="Delete" asp-route-id="@item.PaperID">Delete</a> |
+
+                        @* Currently the Admin would be required to remember the PaperID to assign it a review: in future try to pass this value *@
+                        @* Only make assign reviewer available to admin *@
+                        @if (LoginManager.IsAdmin())
+                        {
+                            <a asp-controller="Reviews" asp-action="Create" >Assign Reviewer</a>
+                        }
+                    </td>
                 </tr>
             }
 }
