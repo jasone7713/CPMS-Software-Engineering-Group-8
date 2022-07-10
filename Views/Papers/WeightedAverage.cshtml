@@ -30,59 +30,56 @@
         </tr>
     </thead>
     <tbody>
-        @{ /*
-            using(SqlConnection conn = new SqlConnection("Server=(localdb)\\mssqllocaldb;Database=CPMS.Data;Trusted_Connection=True;MultipleActiveResultSets=true"))
-            {
-                SqlCommand command = new SqlCommand("SELECT PaperID From Paper WHERE Active = 'True'", conn);
-
-                conn.Open();
-
-                using(SqlDataReader reader = command.ExecuteReader())
-                {
-                    //iterating through each active paper
-                    while (reader.Read())
-                    {
-                        var PaperID = reader[0];
-
-                        var GetReviewsByPaper = new SqlCommand($"SELECT AppropriatenessOfTopic FROM Review WHERE PaperID = '{PaperID}' AND Complete = 'True'", conn);
-
-                        using (var Reviews = GetReviewsByPaper.ExecuteReader())
-                        {
-                            <tr>@Reviews[0]</tr>
-                        }
-                    }
-            }
-        }*/
-    }
     
     @foreach (var item in Model) {
-            //logic to display only records marked as active
+            //display only records marked as active
             if (item.Active == true)
             {
-                //each active paper's ID'
+                //each active paper's ID
                 var PaperID = item.PaperID;
 
                 <tr>
                     <td>@PaperID</td>
+
+                    @* Read data from server to display average scores on a per-paper basis *@
                     @using(SqlConnection conn = new SqlConnection("Server=(localdb)\\mssqllocaldb;Database=CPMS.Data;Trusted_Connection=True;MultipleActiveResultSets=true"))
                     {
-                        SqlCommand command = new SqlCommand($"SELECT ROUND(AVG(CAST(AppropriatenessOfTopic AS FLOAT)), 2), ROUND(AVG(CAST(TimelinessOfTopic AS FLOAT)), 2), ROUND(AVG(CAST(Originality AS FLOAT)), 2) FROM Review WHERE PaperID = '{PaperID}';", conn);
+                        SqlCommand command = new SqlCommand($"SELECT ROUND(AVG(CAST(AppropriatenessOfTopic AS FLOAT)), 2), ROUND(AVG(CAST(TimelinessOfTopic AS FLOAT)), 2), ROUND(AVG(CAST(SupportiveEvidence AS FLOAT)), 2), ROUND(AVG(CAST(TechnicalQuality AS FLOAT)), 2), ROUND(AVG(CAST(ScopeOfCoverage AS FLOAT)), 2), ROUND(AVG(CAST(CitationOfPreviousWork AS FLOAT)), 2), ROUND(AVG(CAST(Originality AS FLOAT)), 2), ROUND(AVG(CAST(OrganizationOfPaper AS FLOAT)), 2), ROUND(AVG(CAST(ClarityOfMainMessage AS FLOAT)), 2), ROUND(AVG(CAST(Mechanics AS FLOAT)), 2), ROUND(AVG(CAST(StabilityForPresentation AS FLOAT)), 2), ROUND(AVG(CAST(PotentialInterestInTopic AS FLOAT)), 2), ROUND(AVG(CAST(OverallRating AS FLOAT)), 2) FROM Review WHERE PaperID = '{PaperID}';", conn);
 
                         conn.Open();
 
                         using(SqlDataReader reader = command.ExecuteReader())
                         {
-                            //reader.Read();
+                            reader.Read();
 
-                            try
+                            //this is the number of columns that are expected in our table
+                            int NumFields = 13;
+
+                            double sum = 0;
+
+                            //iterating through SQL data reader result
+                            for(int i = 0; i < NumFields; i++)
                             {
-                                while (true)
+                                //try printing column value
+                                try
                                 {
-                                    reader.Read();
-                                    <td>@reader[0]</td>
+                                    <td>@reader[i]</td>
+
+                                    sum += Convert.ToDouble(@reader[i]);
+                                }  
+                                //if an error occurs just print an empty column
+                                catch
+                                {
+                                    <td></td>
                                 }
+
                             }
-                            catch { }
+    
+                            //print filename as column
+                            <td>@item.Filename</td>
+
+                            //weighted average
+                            <td>@(sum / NumFields)</td>
                         }
                     }
                 </tr>

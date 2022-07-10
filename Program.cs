@@ -9,9 +9,9 @@ builder.Services.AddDbContext<CPMSContext>(options =>
 builder.Services.AddControllersWithViews();
 
 //the two lines below are used to add sessions and session variables to the app 
-builder.Services.AddDistributedMemoryCache();
-builder.Services.AddSession();
-builder.Services.AddMvc();
+//builder.Services.AddDistributedMemoryCache();
+//builder.Services.AddSession();
+//builder.Services.AddMvc();
 
 var app = builder.Build();
 
@@ -27,8 +27,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 //added to support session variables
-app.UseSession();
-app.UseCookiePolicy();
+//app.UseSession();
+//app.UseCookiePolicy();
 
 app.UseRouting();
 
