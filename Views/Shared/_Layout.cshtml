@@ -22,7 +22,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        @* Display maintenance tables to admin only*@
+                        @* logic to display only navbar items that are relevant to the user type*@
                         @if(LoginManager.IsAdmin()){
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Papers" asp-action="Index">Papers</a>
@@ -36,8 +36,18 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Reviewers" asp-action="Index">Reviewers</a>
                             </li>
+                        }
+                        else if(LoginManager.UserType == "Reviewer")
+                        {
+
+                        }
+                        else if(LoginManager.UserType == "Author")
+                        {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Papers" asp-action="Index">My Papers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Authors" asp-action="Index">My Account</a>
                             </li>
                         }
                     </ul>

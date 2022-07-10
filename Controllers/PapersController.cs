@@ -9,14 +9,13 @@ using CPMS.Data;
 using CPMS.Models;
 using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
+using Microsoft.Data.SqlClient;
 
 namespace CPMS.Controllers
 {
     public class PapersController : Controller
     {
         private readonly CPMSContext _context;
-
-        public string Message = "";
 
         public PapersController(CPMSContext context)
         {
@@ -52,6 +51,33 @@ namespace CPMS.Controllers
         // GET: Papers/Create
         public IActionResult Create()
         {
+            //logic to make sure paper submissions are allowed
+
+            //generate SQL connection
+            using(SqlConnection conn = new SqlConnection("Server=(localdb)\\mssqllocaldb;Database=CPMS.Data;Trusted_Connection=True;MultipleActiveResultSets=true"))
+            {
+                //generate query
+                SqlCommand command = new SqlCommand($"SELECT EnabledAuthors FROM Defaults;", conn);
+
+                conn.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    reader.Read();
+
+                    try
+                    {
+                        //if we are not accepting papers redirect the user
+                        if((bool)reader[0] != true)
+                        {
+                            ViewBag.PaperErrors = "Error: we are not currently accepting paper submissions";
+                            return RedirectToAction("Index", "Home");
+                        }
+                    }
+                    catch { }
+                }
+            }
+
             return View();
         }
 
@@ -219,28 +245,25 @@ namespace CPMS.Controllers
         // Get content type
         private string GetContentType(string path)
         {
-            var types = GetMimeTypes();
+            //types of extensions allowed
+            var types = GetExts();
+
+            //get extension and return
             var ext = Path.GetExtension(path).ToLowerInvariant();
             return types[ext];
         }
 
-        // Get mime types
-        private Dictionary<string, string> GetMimeTypes()
+        // Get accepted file extensions
+        private Dictionary<string, string> GetExts()
         {
+            //accepted formats
             return new Dictionary<string, string>
-    {
-        {".txt", "text/plain"},
-        {".pdf", "application/pdf"},
-        {".doc", "application/vnd.ms-word"},
-        {".docx", "application/vnd.ms-word"},
-        {".xls", "application/vnd.ms-excel"},
-        {".xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"},
-        {".png", "image/png"},
-        {".jpg", "image/jpeg"},
-        {".jpeg", "image/jpeg"},
-        {".gif", "image/gif"},
-        {".csv", "text/csv"}
-    };
+            {
+                {".txt", "text/plain"},
+                {".pdf", "application/pdf"},
+                {".doc", "application/vnd.ms-word"},
+                {".docx", "application/vnd.ms-word"},
+            };
         }
 
         private bool PaperExists(int id)

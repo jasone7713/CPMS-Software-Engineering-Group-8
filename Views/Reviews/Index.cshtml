@@ -6,11 +6,14 @@
 
 <h1>Reviews</h1>
 
-<h4>This is a test message!</h4>
+@* Display create review button only to admin *@
+@if (LoginManager.IsAdmin())
+{
+    <p>
+        <a asp-action="Create">Create New Review</a>
+    </p>    
+}
 
-<p>
-    <a asp-action="Create">Create New Review</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -28,6 +31,14 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
+
+        @if(LoginManager.UserType == "Reviewer")
+        {
+             @if(item.ReviewerID != LoginManager.UserId){
+                    continue;
+             }   
+        }
+
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.PaperID)
@@ -41,7 +52,11 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ReviewID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ReviewID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ReviewID">Delete</a>
+                @* Only allow admin access to delete a review *@
+                @if (LoginManager.IsAdmin())
+                {
+                    <a asp-action="Delete" asp-route-id="@item.ReviewID">Delete</a>
+                }
             </td>
         </tr>
 }

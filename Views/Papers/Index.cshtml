@@ -10,6 +10,9 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<p>@ViewBag.PaperErrors</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -30,31 +33,38 @@
     <tbody>
 @foreach (var item in Model) {
             //logic to display only records marked as active
-            if (item.Active == true)
+            @if (item.Active == true)
             {
-            <tr>
-            <td>
-
-                @{  /*
-                    string sql = "SELECT FirstName FROM Author WHERE AuthorID = '" + item.AuthorID + "';";  
-                    SqlCommand cmd = new SqlCommand(sql, conn);  
-                    SqlDataReader reader = cmd.ExecuteReader(); */
+                @* Ensure that authors only see their work *@
+                @if(LoginManager.UserType == "Author")
+                {
+                    @if(LoginManager.UserId != item.PaperID)
+                    {
+                        continue;
+                    }
+                }
+                @* Kick anyone out who isn't an admin or author *@
+                else if (!LoginManager.IsAdmin())
+                {
+                    break;
                 }
 
-                @Html.DisplayFor(modelItem => item.AuthorID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Filename)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                    <a asp-action="Edit" asp-route-id="@item.PaperID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.PaperID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.PaperID">Delete</a>
-            </td>
-            </tr>
+                <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AuthorID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Filename)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                        <a asp-action="Edit" asp-route-id="@item.PaperID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.PaperID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.PaperID">Delete</a>
+                </td>
+                </tr>
             }
 }
     </tbody>
