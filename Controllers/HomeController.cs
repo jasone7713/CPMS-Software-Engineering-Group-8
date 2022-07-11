@@ -86,7 +86,7 @@ namespace CPMS.Controllers
                             {
                                 if (reader[0] != null)
                                 {
-                                    //uploade global login information if a match is found in db
+                                    //upload global login information if a match is found in db
                                     LoginManager.Username = Username;
                                     LoginManager.UserType = "Author";
                                     LoginManager.IsLoggedIn = true;

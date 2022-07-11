@@ -22,7 +22,14 @@ namespace CPMS.Controllers
         // GET: Reviewers
         public async Task<IActionResult> Index()
         {
-              return _context.Reviewer != null ? 
+
+            //only allow admin and reviewer access
+            if (LoginManager.IsLoggedIn == false || LoginManager.IsLoggedIn == null || LoginManager.UserType == "Author")
+            {
+                return NotFound();
+            }
+
+            return _context.Reviewer != null ? 
                           View(await _context.Reviewer.ToListAsync()) :
                           Problem("Entity set 'CPMSContext.Reviewer'  is null.");
         }
@@ -60,7 +67,17 @@ namespace CPMS.Controllers
             {
                 _context.Add(reviewer);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                //redirect non-logged users to login page
+                if (LoginManager.IsLoggedIn == false || LoginManager.IsLoggedIn == null)
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+                //redirect logged users to index
+                else
+                {
+                    return RedirectToAction(nameof(Index));
+                }
             }
             return View(reviewer);
         }

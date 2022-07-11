@@ -25,8 +25,8 @@ namespace CPMS.Controllers
         public async Task<IActionResult> Index()
         {
 
-            //only allow admin access
-            if (LoginManager.IsLoggedIn != true || LoginManager.UserType == "Reviewer")
+            //only allow admin register access
+            if (LoginManager.IsLoggedIn == false || LoginManager.IsLoggedIn == null || LoginManager.UserType == "Reviewer")
             {
                 return NotFound();
             }
@@ -78,11 +78,23 @@ namespace CPMS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AuthorID,FirstName,MiddleInitial,LastName,Affiliation,Department,Address,City,State,ZipCode,PhoneNumber,EmailAddress,Password")] Author author)
         {
+            
             if (ModelState.IsValid)
             {
                 _context.Add(author);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                //redirect non-logged users to login page
+                if(LoginManager.IsLoggedIn == false || LoginManager.IsLoggedIn == null)
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+                //redirect logged users to index
+                else
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+
             }
             return View(author);
         }
