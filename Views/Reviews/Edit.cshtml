@@ -1,4 +1,5 @@
-﻿@model CPMS.Models.Review
+﻿@using Microsoft.Data.SqlClient
+@model CPMS.Models.Review
 
 @{
     ViewData["Title"] = "Edit";
@@ -13,6 +14,44 @@
          <form asp-action="Edit" style="align-items:center;">
                 <div class="row">
                     <div class="column">
+                    @{  //display download paper option
+                        string? FileName = "";
+
+                        //grab paper ID
+                        var PaperID = Model.PaperID;
+
+                        //query filename from the paper associated with this paperID
+                        @using(SqlConnection conn = new SqlConnection("Server=(localdb)\\mssqllocaldb;Database=CPMS.Data;Trusted_Connection=True;MultipleActiveResultSets=true"))
+                        {
+                            SqlCommand command = new SqlCommand($"SELECT Filename From Paper WHERE PaperID = '{@PaperID}';", conn);
+
+                            conn.Open();
+
+                            try
+                            {
+                                using (SqlDataReader reader = command.ExecuteReader())
+                                {
+                                    reader.Read();
+
+                                    FileName = reader[0].ToString();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                FileName = "";
+                            }
+
+                            conn.Close();
+                        }
+
+                        //display download button if valid paper
+                        if(FileName != "")
+                        {
+                            <a asp-controller="Papers" asp-action="Download" asp-route-filename="@FileName" >Download</a>
+                        }
+
+                    }
+
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group">
                             <label asp-for="PaperID" class="control-label"></label>

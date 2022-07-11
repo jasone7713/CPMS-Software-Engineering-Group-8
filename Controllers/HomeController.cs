@@ -27,6 +27,15 @@ namespace CPMS.Controllers
             return View();
         }
 
+        //logout logic and redirect
+        public IActionResult Logout()
+        {
+            //clear all login data
+            LoginManager.Logout();
+            
+            return View("Login");
+        }
+
         //reports redirect
         public IActionResult Reports()
         {

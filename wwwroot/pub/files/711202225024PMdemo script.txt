@@ -1,0 +1,17 @@
+Order of events to demonstrate system:
+
+AUTHOR
+1. Create an account as an Author
+2. Edit your account as an Author
+3. Verify that the edit you made was saved
+3. Submit a paper as an Author
+4. View the paper submission details
+5. Verify that you can download the paper
+6. Edit the details of the submission
+7. Go back to submission details to verify that the edit you made was saved
+8. Delete your paper submission
+9. Logout
+
+ADMIN
+1. Login as admin using the hard-coded login "admin" "smith"
+

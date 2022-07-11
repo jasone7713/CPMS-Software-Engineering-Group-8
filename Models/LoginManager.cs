@@ -22,6 +22,17 @@ namespace CPMS.Models
 
         public static int? LoginAttempts = 0;
 
+        //logout method clears all login info
+        public static void Logout()
+        {
+            Username = null;
+            IsLoggedIn = false;
+            UserType = null;
+            UserId = null;
+            Admin = false;
+            LoginAttempts = 0;
+        }
+
         //check for any common SQL injection patterns in our login string before performing SQL query
         public static bool CheckValidityOfLogin(string Username, string Password)
         {

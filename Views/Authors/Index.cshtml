@@ -11,6 +11,9 @@
 <table class="table">
     <thead>
         <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.AuthorID)
+            </td>
             <th>
                 @Html.DisplayNameFor(model => model.FirstName)
             </th>
@@ -44,6 +47,9 @@
     }
 
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AuthorID)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)
             </td>

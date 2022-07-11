@@ -76,8 +76,11 @@
                     else if(LoginManager.IsLoggedIn == true)
                     {
                          <li class="nav-item">
-                            <p>Hello, @LoginManager.Username!</p>
+                            <p class="nav-link text-dark">Hello, @LoginManager.Username!</p>
                          </li> 
+                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
+                         </li>
                     }
                     @* Display login and register options to a non-logged in user *@
                     else

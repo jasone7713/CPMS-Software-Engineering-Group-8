@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.ReviewerID)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.FirstName)
             </th>
             <th>
@@ -51,6 +54,9 @@
     }
 
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReviewerID)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)
             </td>
