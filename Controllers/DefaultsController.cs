@@ -22,6 +22,13 @@ namespace CPMS.Controllers
         // GET: Defaults
         public async Task<IActionResult> Index()
         {
+
+            //only allow admin access
+            if(LoginManager.IsAdmin() != true)
+            {
+                return NotFound();
+            }
+
               return _context.Defaults != null ? 
                           View(await _context.Defaults.ToListAsync()) :
                           Problem("Entity set 'CPMSContext.Defaults'  is null.");
@@ -30,6 +37,12 @@ namespace CPMS.Controllers
         // GET: Defaults/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            //only allow admin access
+            if (LoginManager.IsAdmin() != true)
+            {
+                return NotFound();
+            }
+
             if (id == null || _context.Defaults == null)
             {
                 return NotFound();
@@ -48,16 +61,27 @@ namespace CPMS.Controllers
         // GET: Defaults/Create
         public IActionResult Create()
         {
+            //only allow admin access
+            if (LoginManager.IsAdmin() != true)
+            {
+                return NotFound();
+            }
+
             return View();
         }
 
         // POST: Defaults/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("DefaultsID,EnabledReviewers,EnabledAuthors")] Defaults defaults)
         {
+
+            //only allow admin access
+            if (LoginManager.IsAdmin() != true)
+            {
+                return NotFound();
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(defaults);
@@ -88,6 +112,12 @@ namespace CPMS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("DefaultsID,EnabledReviewers,EnabledAuthors")] Defaults defaults)
         {
+            //only allow admin access
+            if (LoginManager.IsAdmin() != true)
+            {
+                return NotFound();
+            }
+
             if (id != defaults.DefaultsID)
             {
                 return NotFound();
@@ -119,6 +149,12 @@ namespace CPMS.Controllers
         // GET: Defaults/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            //only allow admin access
+            if (LoginManager.IsAdmin() != true)
+            {
+                return NotFound();
+            }
+
             if (id == null || _context.Defaults == null)
             {
                 return NotFound();
@@ -139,6 +175,12 @@ namespace CPMS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            //only allow admin access
+            if (LoginManager.IsAdmin() != true)
+            {
+                return NotFound();
+            }
+
             if (_context.Defaults == null)
             {
                 return Problem("Entity set 'CPMSContext.Defaults'  is null.");

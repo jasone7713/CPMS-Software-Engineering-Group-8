@@ -27,6 +27,22 @@ namespace CPMS.Controllers
                           Problem("Entity set 'CPMSContext.Review'  is null.");
         }
 
+        // GET: Review Comments report
+        public async Task<IActionResult> ReviewComments()
+        {
+            //allow only admin access
+            if (LoginManager.IsAdmin())
+            {
+                return _context.Review != null ?
+                    View(await _context.Review.ToListAsync()) :
+                    Problem("Entity set 'CPMSContext.Review'  is null.");
+            }
+            else
+            {
+                return NotFound();  
+            }
+        }
+
         // GET: Reviews/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -49,6 +65,21 @@ namespace CPMS.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+
+        // GET: Scores
+        public async Task<IActionResult> Scores()
+        {
+            if (LoginManager.IsAdmin())
+            {
+                return _context.Review != null ?
+                          View(await _context.Review.ToListAsync()) :
+                          Problem("Entity set 'CPMSContext.Review'  is null.");
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         // POST: Reviews/Create

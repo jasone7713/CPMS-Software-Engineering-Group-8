@@ -75,7 +75,7 @@ namespace CPMS.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            //logic to make sure paper submissions are allowed
+            //logic to make sure paper submissions are allowed before creating
 
             //generate SQL connection
             using(SqlConnection conn = new SqlConnection("Server=(localdb)\\mssqllocaldb;Database=CPMS.Data;Trusted_Connection=True;MultipleActiveResultSets=true"))
@@ -105,6 +105,7 @@ namespace CPMS.Controllers
             return View();
         }
 
+        // GET: Weighted average report
         public async Task<IActionResult> WeightedAverage()
         {
             //only return report for admin

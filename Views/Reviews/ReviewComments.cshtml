@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CPMS.Models.Review>
+
+@{
+    ViewData["Title"] = "Review Comments";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            @* Display names for each column *@
+            <th>
+                @Html.DisplayNameFor(model => model.ReviewerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContentComments)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WrittenDocumentComments)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PotentialForOralPresentationComments)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OverallRatingComments)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+@foreach (var item in Model) {
+
+        @* Display data for each field in model 
+        <tr>
+            <th>
+                @Html.DisplayFor(model => model.ReviewerID)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.ContentComments)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.WrittenDocumentComments)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.PotentialForOralPresentationComments)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.OverallRatingComments)
+            </th>
+        </tr>
+        *@
+}
+    </tbody>
+</table>

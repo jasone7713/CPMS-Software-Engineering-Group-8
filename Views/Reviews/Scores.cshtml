@@ -1,0 +1,106 @@
+﻿@model IEnumerable<CPMS.Models.Review>
+
+@{
+    ViewData["Title"] = "Scores";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            @* Display names for each column *@
+            <th>
+                @Html.DisplayNameFor(model => model.PaperID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AppropriatenessOfTopic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimelinessOfTopic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupportiveEvidence)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TechnicalQuality)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScopeOfCoverage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CitationOfPreviousWork)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Originality)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrganizationOfPaper)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClarityOfMainMessage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mechanics)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StabilityForPresentation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PotentialInterestInTopic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OverallRating)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+@foreach (var item in Model) {
+
+        @* Display data for each field in model *@
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaperID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AppropriatenessOfTopic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimelinessOfTopic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupportiveEvidence)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TechnicalQuality)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScopeOfCoverage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CitationOfPreviousWork)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Originality)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrganizationOfPaper)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClarityOfMainMessage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mechanics)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StabilityForPresentation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PotentialInterestInTopic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OverallRating)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

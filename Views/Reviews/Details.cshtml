@@ -16,7 +16,7 @@
             <dt class = "col-sm-2">
                 @Html.DisplayNameFor(model => model.PaperID)
             </dt>
-                @{
+                @{  //display download paper option
                     string? FileName = "";
 
                     //grab paper ID
@@ -46,6 +46,7 @@
                         conn.Close();
                     }
 
+                    //display download button if valid paper
                     if(FileName != "")
                     {
                         <a asp-controller="Papers" asp-action="Download" asp-route-filename="@FileName" >Download</a>

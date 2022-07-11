@@ -12,12 +12,7 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ReviewerID" />
-            <div class="form-group">
-                <label asp-for="Active" class="control-label"></label>
-                <input asp-for="Active" class="form-control" />
-                <span asp-validation-for="Active" class="text-danger"></span>
-            </div>
+            <h5>Contact Information</h5>
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
                 <input asp-for="FirstName" class="form-control" />
@@ -78,180 +73,276 @@
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
+            <h5>Review Topics</h5>
+            <p>Please indicate the topics in which you are knowledgable and/or interested</p>
             <div class="form-group">
                 <label asp-for="AnalysisOfAlgorithms" class="control-label"></label>
-                <input asp-for="AnalysisOfAlgorithms" class="form-control" />
+                <select asp-for="AnalysisOfAlgorithms" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="AnalysisOfAlgorithms" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Applications" class="control-label"></label>
-                <input asp-for="Applications" class="form-control" />
+                <select asp-for="Applications" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="Applications" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Architecture" class="control-label"></label>
-                <input asp-for="Architecture" class="form-control" />
+                <select asp-for="Architecture" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="Architecture" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ArtificialIntelligence" class="control-label"></label>
-                <input asp-for="ArtificialIntelligence" class="form-control" />
+                <select asp-for="ArtificialIntelligence" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="ArtificialIntelligence" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ComputerEngineering" class="control-label"></label>
-                <input asp-for="ComputerEngineering" class="form-control" />
+                <select asp-for="ComputerEngineering" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="ComputerEngineering" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Cirriculum" class="control-label"></label>
-                <input asp-for="Cirriculum" class="form-control" />
+                <select asp-for="Cirriculum" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="Cirriculum" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DataStructures" class="control-label"></label>
-                <input asp-for="DataStructures" class="form-control" />
+                <select asp-for="DataStructures" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="DataStructures" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Databases" class="control-label"></label>
-                <input asp-for="Databases" class="form-control" />
+                <select asp-for="Databases" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="Databases" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DistanceLearning" class="control-label"></label>
-                <input asp-for="DistanceLearning" class="form-control" />
+                <select asp-for="DistanceLearning" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="DistanceLearning" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DistributedSystems" class="control-label"></label>
-                <input asp-for="DistributedSystems" class="form-control" />
+                <select asp-for="DistributedSystems" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="DistributedSystems" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="EthicalSocietalIssues" class="control-label"></label>
-                <input asp-for="EthicalSocietalIssues" class="form-control" />
+                <select asp-for="EthicalSocietalIssues" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="EthicalSocietalIssues" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FirstYearComputing" class="control-label"></label>
-                <input asp-for="FirstYearComputing" class="form-control" />
+                <select asp-for="FirstYearComputing" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="FirstYearComputing" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="GenderIssues" class="control-label"></label>
-                <input asp-for="GenderIssues" class="form-control" />
+                <select asp-for="GenderIssues" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="GenderIssues" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="GrantWriting" class="control-label"></label>
-                <input asp-for="GrantWriting" class="form-control" />
+                <select asp-for="GrantWriting" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="GrantWriting" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="GraphicsImageProcessing" class="control-label"></label>
-                <input asp-for="GraphicsImageProcessing" class="form-control" />
+                <select asp-for="GraphicsImageProcessing" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="GraphicsImageProcessing" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="HumanComputerInteraction" class="control-label"></label>
-                <input asp-for="HumanComputerInteraction" class="form-control" />
+                <select asp-for="HumanComputerInteraction" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="HumanComputerInteraction" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="LaboratoryEnvironments" class="control-label"></label>
-                <input asp-for="LaboratoryEnvironments" class="form-control" />
+                <select asp-for="LaboratoryEnvironments" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="LaboratoryEnvironments" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Literacy" class="control-label"></label>
-                <input asp-for="Literacy" class="form-control" />
+                <select asp-for="Literacy" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="Literacy" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="MathematicsInComputing" class="control-label"></label>
-                <input asp-for="MathematicsInComputing" class="form-control" />
+                <select asp-for="MathematicsInComputing" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="MathematicsInComputing" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="MultiMedia" class="control-label"></label>
-                <input asp-for="MultiMedia" class="form-control" />
+                <select asp-for="MultiMedia" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="MultiMedia" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="NetworkingDataCommunications" class="control-label"></label>
-                <input asp-for="NetworkingDataCommunications" class="form-control" />
+                <select asp-for="NetworkingDataCommunications" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="NetworkingDataCommunications" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="NonMajorCourses" class="control-label"></label>
-                <input asp-for="NonMajorCourses" class="form-control" />
+                <select asp-for="NonMajorCourses" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="NonMajorCourses" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ObjectOrientedIssues" class="control-label"></label>
-                <input asp-for="ObjectOrientedIssues" class="form-control" />
+                <select asp-for="ObjectOrientedIssues" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="ObjectOrientedIssues" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="OperatingSystems" class="control-label"></label>
-                <input asp-for="OperatingSystems" class="form-control" />
+                <select asp-for="OperatingSystems" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="OperatingSystems" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ParallelProgramming" class="control-label"></label>
-                <input asp-for="ParallelProgramming" class="form-control" />
+                <select asp-for="ParallelProgramming" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="ParallelProgramming" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Research" class="control-label"></label>
-                <input asp-for="Research" class="form-control" />
+                <select asp-for="Research" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="Research" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Security" class="control-label"></label>
-                <input asp-for="Security" class="form-control" />
+                <select asp-for="Security" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="Security" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SoftwareEngineering" class="control-label"></label>
-                <input asp-for="SoftwareEngineering" class="form-control" />
+                <select asp-for="SoftwareEngineering" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="SoftwareEngineering" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SystemEngineering" class="control-label"></label>
-                <input asp-for="SystemEngineering" class="form-control" />
+                <select asp-for="SystemEngineering" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="SystemEngineering" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SystemsAnalysisAndDesign" class="control-label"></label>
-                <input asp-for="SystemsAnalysisAndDesign" class="form-control" />
+                <select asp-for="SystemsAnalysisAndDesign" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="SystemsAnalysisAndDesign" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="UsingTechnologyInTheClassroom" class="control-label"></label>
-                <input asp-for="UsingTechnologyInTheClassroom" class="form-control" />
+                <select asp-for="UsingTechnologyInTheClassroom" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="UsingTechnologyInTheClassroom" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="WebAndInternetProgramming" class="control-label"></label>
-                <input asp-for="WebAndInternetProgramming" class="form-control" />
+                <select asp-for="WebAndInternetProgramming" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="WebAndInternetProgramming" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Other" class="control-label"></label>
-                <input asp-for="Other" class="form-control" />
+                <select asp-for="Other" class="form-control">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+                </select>
                 <span asp-validation-for="Other" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="OtherDescription" class="control-label"></label>
                 <input asp-for="OtherDescription" class="form-control" />
                 <span asp-validation-for="OtherDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ReviewsAcknowledged" class="control-label"></label>
-                <input asp-for="ReviewsAcknowledged" class="form-control" />
-                <span asp-validation-for="ReviewsAcknowledged" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
