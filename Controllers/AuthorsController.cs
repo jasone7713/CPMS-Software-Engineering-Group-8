@@ -26,14 +26,13 @@ namespace CPMS.Controllers
         {
 
             //only allow admin register access
-            if (LoginManager.IsLoggedIn == false || LoginManager.IsLoggedIn == null || LoginManager.UserType == "Reviewer")
+            if (LoginManager.UserType == "Author" || LoginManager.IsAdmin())
             {
-                return NotFound();
+                return _context.Author != null ?
+                         View(await _context.Author.ToListAsync()) :
+                         Problem("Entity set 'CPMSContext.Author'  is null.");
             }
-
-            return _context.Author != null ? 
-                          View(await _context.Author.ToListAsync()) :
-                          Problem("Entity set 'CPMSContext.Author'  is null.");
+            else return NotFound();
         }
 
         // GET: Authors/Details/5

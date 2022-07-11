@@ -157,6 +157,9 @@ namespace CPMS.Controllers
                     }
                 }
 
+                //make sure a created paper is always active by default
+                paper.Active = true;
+
                 //bind the userID of the author with the paper
                 if(LoginManager.UserType == "Author")
                 {
