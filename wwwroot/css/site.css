@@ -99,7 +99,7 @@ a:link a:visited {
     top: 56px;
     left: -40px;
     width: 1960px;
-    height: 812px;
+    height: 852px;
 }
 
 .fontA {
@@ -122,6 +122,14 @@ a:link a:visited {
 
 .fontC {
     font-family: "Lucida Handwriting", Times, serif;
+}
+
+.People {
+    position: absolute;
+    top: 200px;
+    left: 75px;
+    width: 290px;
+    height: 650px;
 }
 
 table {
