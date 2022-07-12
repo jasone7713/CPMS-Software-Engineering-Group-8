@@ -16,6 +16,7 @@ namespace CPMS.Controllers
             _logger = logger;
         }
 
+        //GET Home page
         public IActionResult Index()
         {
             return View();
@@ -53,6 +54,7 @@ namespace CPMS.Controllers
             return View();
         }
 
+        //This method handles loggin users in
         [HttpPost]
         public async Task<IActionResult> ManageLogin(string UserType, string Username, string Password)
         {

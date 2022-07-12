@@ -14,8 +14,6 @@ namespace CPMS.Controllers
     {
         private readonly CPMSContext _context;
 
-        public bool Test = true;
-
         public AuthorsController(CPMSContext context)
         {
             _context = context;
@@ -40,16 +38,14 @@ namespace CPMS.Controllers
         {
 
             //only allow admin access
-            if (LoginManager.IsLoggedIn != true || LoginManager.UserType == "Reviewer")
-            {
-                return NotFound();
-            }
-
-            //route non-admin users to home page
-            if (!LoginManager.IsAdmin())
+            if (LoginManager.UserId != id && (LoginManager.IsAdmin() == false))
             {
                 return RedirectToAction("Index", "Home");
             }
+            //if (LoginManager.IsLoggedIn != true || LoginManager.UserType == "Reviewer")
+            //{
+            //    return NotFound();
+            //}
 
             if (id == null || _context.Author == null)
             {
@@ -165,7 +161,15 @@ namespace CPMS.Controllers
             //route non-admin users to home page
             if (!LoginManager.IsAdmin())
             {
-                return RedirectToAction("Index", "Home");
+                if(LoginManager.UserId != id)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                //log user out if they're deleting their own account
+                else
+                {
+                    LoginManager.Logout();
+                }
             }
 
             if (id == null || _context.Author == null)
@@ -188,11 +192,11 @@ namespace CPMS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            //only allow admin access
-            if (LoginManager.IsLoggedIn != true || LoginManager.UserType == "Reviewer")
-            {
-                return NotFound();
-            }
+            ////only allow admin access
+            //if (LoginManager.IsLoggedIn != true || LoginManager.UserType == "Reviewer")
+            //{
+            //    return NotFound();
+            //}
 
             if (_context.Author == null)
             {

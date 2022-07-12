@@ -6,7 +6,10 @@
 
 <h1>Author</h1>
 <p>
-    <a asp-action="Create">Create New</a>
+    @if (LoginManager.IsAdmin())
+    {
+        <a asp-action="Create">Create New</a>
+    }
 </p>
 <table class="table">
     <thead>
@@ -29,7 +32,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.EmailAddress)
             </th>
-            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -68,7 +71,10 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.AuthorID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.AuthorID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.AuthorID">Delete</a>
+                    @if (LoginManager.IsAdmin())
+                    {
+                        <a asp-action="Delete" asp-route-id="@item.AuthorID">Delete</a>
+                    }
             </td>
         </tr>
 }

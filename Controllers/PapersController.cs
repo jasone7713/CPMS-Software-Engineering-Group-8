@@ -260,10 +260,10 @@ namespace CPMS.Controllers
             var paper = await _context.Paper
                 .FirstOrDefaultAsync(m => m.PaperID == id);
 
-            //if (paper == null)
-            //{
-            //    return NotFound();
-            //}
+            if (paper == null)
+            {
+                return NotFound();
+            }
 
             return View(paper);
         }

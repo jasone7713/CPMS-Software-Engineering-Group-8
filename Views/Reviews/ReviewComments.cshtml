@@ -29,25 +29,25 @@
 
 @foreach (var item in Model) {
 
-        @* Display data for each field in model 
+        @* Display data for each field in model *@
         <tr>
-            <th>
-                @Html.DisplayFor(model => model.ReviewerID)
-            </th>
-            <th>
-                @Html.DisplayFor(model => model.ContentComments)
-            </th>
-            <th>
-                @Html.DisplayFor(model => model.WrittenDocumentComments)
-            </th>
-            <th>
-                @Html.DisplayFor(model => model.PotentialForOralPresentationComments)
-            </th>
-            <th>
-                @Html.DisplayFor(model => model.OverallRatingComments)
-            </th>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.ReviewerID) *@
+                <a asp-controller="Reviewers" asp-action="Details" asp-route-id="@item.ReviewerID">Reviewer Details</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContentComments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WrittenDocumentComments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PotentialForOralPresentationComments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OverallRatingComments)
+            </td>
         </tr>
-        *@
 }
     </tbody>
 </table>

@@ -37,6 +37,12 @@ namespace CPMS.Controllers
         // GET: Reviewers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+
+            if(LoginManager.IsAdmin() == false && LoginManager.UserId != id)
+            {
+                return NotFound();
+            }
+
             if (id == null || _context.Reviewer == null)
             {
                 return NotFound();
@@ -85,6 +91,12 @@ namespace CPMS.Controllers
         // GET: Reviewers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+
+            if (LoginManager.IsAdmin() == false && LoginManager.UserId != id)
+            {
+                return NotFound();
+            }
+
             if (id == null || _context.Reviewer == null)
             {
                 return NotFound();
@@ -138,6 +150,12 @@ namespace CPMS.Controllers
         // GET: Reviewers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+
+            if (LoginManager.IsAdmin() == false && LoginManager.UserId != id)
+            {
+                return NotFound();
+            }
+
             if (id == null || _context.Reviewer == null)
             {
                 return NotFound();
